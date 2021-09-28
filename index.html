@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Resume Generator</title>
+</head>
+<body>
+    <div class="container">
+    <form class="input-fields">
+          <h1 class= "text-center">Resume Generator</h1>
+          <input type="text" name="name" placeholder="Name" />
+          <!-- <input type="email" name="email" placeholder="enter the emial" /> -->
+          <textarea name="workexp" placeholder="Work experience"></textarea>
+          <textarea name="academics" placeholder="Academic details"></textarea>
+          <input name="objective" placeholder="Objective" />
+          <textarea name="skills" placeholder="Skills" ></textarea>
+          <textarea name="projects" placeholder="Projects" ></textarea>
+          <textarea name="achievements" placeholder="Achievements" ></textarea>
+          <textarea name="contact" placeholder="Contact" ></textarea>
+    </form>
+     <!-- resume preview -->
+    <div class="output">
+    </div>  
+    <!-- button for toggle   -->
+   <div class="butn">
+        <button onclick="toggle()">Preview or edit</button>
+   </div>
+   <div></div>
+   <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
