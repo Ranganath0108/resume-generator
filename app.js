@@ -1,6 +1,9 @@
 
 const inputfields = document.querySelector('.input-fields')
+const innerBox = document.querySelector('.innerBox')
 const output = document.querySelector('.output')
+const container = document.querySelector('.container')
+const resumeSaveBtn = document.querySelector('#saveResume');
 
 let inputShow = true
 
@@ -32,44 +35,79 @@ TextEditor(inputfields["projects"]).then(nEditor=>{
   PRJC = nEditor
 })
 
+let achievementsData;
+TextEditor(inputfields["achievements"]).then(nEditor=>{
+  achievementsData = nEditor
+})
+
 
 
 function toggle(){
     if(inputShow){
-         inputfields.style.display = "none"
+         inputfields.style.display = "none";
+         innerBox.style.display = "none";
+         container.style.display = "none";
+         resumeSaveBtn.style.display = "block";
          inputShow = false 
          output.innerHTML=`
-           <div class="hero">
-            <h1>${inputfields["name"].value}</h1>
-           
+           <div class="container1" id="resumeT">
+           <div class="innerBox1" id="resume">
+           <div class="hero1">
+               <h1>${inputfields["name"].value}</h1> 
            </div>
            <div class="main">
                <div>
-                 <h2>OBJECTIVE</h2>
+                 <h4>Objective</h4>
+                 <hr>
                  <p>${inputfields["objective"].value}</p>
-                 <h2>SKILLS</h2>
-                 <p>${Skills.getData()}</p>
-                 <h2>ACHIEVEMENTS</h2>
-                 <p>${inputfields["achievements"].value}</p>
-                 <h2>CONTACT</h2>
-                 <p>${inputfields["contact"].value}</p>
-               </div>
-               <div>
-                <h2>WORK EXPERIENCE</h2>
+                 <h4>Skills</h4>
+                 <hr>
+                 ${Skills.getData()}
+                 <h4>Achievements</h4>
+                 <hr>
+                 ${achievementsData.getData()}
+                <h4>Professional experience</h4>
+                <hr>
                 ${workExpdetails.getData()}
-                <h2>ACEMEDIC DETAILS</h2>
+                <h4>Academic details</h4>
+                <hr>
                  ${Academic.getData()}
-                <h2>PROJECTS</h2>
+                 </div>
+                 <div>
+                <h4>Projects</h4>
+                <hr>
                 ${PRJC.getData()}
+                <h4>Contact</h4>
+                <hr>
+                 <p>${inputfields["contact"].value}</p>
+                <p>${inputfields["email"].value}</p>
                </div>
            </div>
-           <div class="butn">
-              <button onclick="print()">Print Resume</button>
+           </div>
         </div>
          `
     }else{
-        inputfields.style.display =  "block"
+        inputfields.style.display =  "block";
+        innerBox.style.display = "flex";
+        container.style.display = "flex";
+        resumeSaveBtn.style.display = "none";
         inputShow = true
         output.innerHTML=""
     }
 }
+
+window.onloadend;
+
+resumeSaveBtn.addEventListener('click', (e)=> {
+								e.preventDefault;
+								const resumePdf = document.getElementById('resume');
+								console.log(window);
+								var opt = {
+  margin:       0.2,
+  filename:     'resume.pdf',
+  image:        { type: 'jpeg', quality: 0.98 },
+  html2canvas:  { scale: 2 },
+  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+};
+								html2pdf().set(opt).from(resumePdf).save();
+				})
